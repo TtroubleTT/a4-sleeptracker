@@ -13,6 +13,8 @@ import {
 import {RouterLink} from "@angular/router";
 import {moon, sunny} from "ionicons/icons";
 import {addIcons} from "ionicons";
+import {SleepService} from "../services/sleep.service";
+import {OvernightSleepData} from "../data/overnight-sleep-data";
 
 @Component({
   selector: 'app-overnight-sleep',
@@ -23,7 +25,10 @@ import {addIcons} from "ionicons";
 })
 export class OvernightSleepPage implements OnInit {
 
-  constructor() {
+  public sleepStart: string = new Date().toISOString();
+  public sleepEnd: string = new Date().toISOString();
+
+  constructor(private sleepService: SleepService) {
     addIcons(
       {
         moon,
@@ -33,6 +38,16 @@ export class OvernightSleepPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  saveSleepLog()
+  {
+    // ToDo: have checks for invalid inputs.
+    const sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd));
+
+    this.sleepService.logOvernightData(sleepData);
+    console.log("date string " + SleepService.AllOvernightData[0].dateString());
+    console.log("summary string " + SleepService.AllOvernightData[0].summaryString());
   }
 
 }

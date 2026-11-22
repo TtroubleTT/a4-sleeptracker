@@ -30,7 +30,7 @@
 
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="bedtime-picker" presentation="date-time"></ion-datetime>
+          <ion-datetime id="bedtime-picker" presentation="date-time" [(ngModel)]="sleepStart"></ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-card-content>
@@ -53,14 +53,14 @@
 
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="wake-picker" presentation="date-time"></ion-datetime>
+          <ion-datetime id="wake-picker" presentation="date-time" [(ngModel)]="sleepEnd"></ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-card-content>
   </ion-card>
 
   <div class="center-aligned">
-    <ion-button class="save-button">
+    <ion-button class="save-button" (click)="saveSleepLog()">
       Save Sleep Log
     </ion-button>
   </div>
