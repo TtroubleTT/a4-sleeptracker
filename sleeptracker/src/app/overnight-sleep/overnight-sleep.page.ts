@@ -6,7 +6,7 @@ import {
   IonButtons,
   IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonContent, IonDatetime, IonDatetimeButton,
-  IonHeader, IonIcon, IonModal,
+  IonHeader, IonIcon, IonLabel, IonModal, IonSegment, IonSegmentButton,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -21,12 +21,13 @@ import {OvernightSleepData} from "../data/overnight-sleep-data";
   templateUrl: './overnight-sleep.page.html',
   styleUrls: ['./overnight-sleep.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, RouterLink, IonDatetime, IonCardContent, IonDatetimeButton, IonModal, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, RouterLink, IonDatetime, IonCardContent, IonDatetimeButton, IonModal, IonButton, IonSegment, IonSegmentButton, IonLabel]
 })
 export class OvernightSleepPage implements OnInit {
 
   public sleepStart: string = new Date().toISOString();
   public sleepEnd: string = new Date().toISOString();
+  public sleepQuality: string = "";
 
   constructor(private sleepService: SleepService) {
     addIcons(
@@ -43,7 +44,7 @@ export class OvernightSleepPage implements OnInit {
   saveSleepLog()
   {
     // ToDo: have checks for invalid inputs.
-    const sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd));
+    const sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd), this.sleepQuality);
 
     this.sleepService.logOvernightData(sleepData);
     console.log("date string " + SleepService.AllOvernightData[0].dateString());
