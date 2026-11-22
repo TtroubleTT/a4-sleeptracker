@@ -14,6 +14,7 @@ import {StanfordSleepinessData} from "../data/stanford-sleepiness-data";
 import {OvernightSleepData} from "../data/overnight-sleep-data";
 import {SleepService} from "../services/sleep.service";
 import {Router} from "@angular/router";
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-sleepiness',
@@ -30,7 +31,7 @@ export class SleepinessPage implements OnInit {
 
   public additionalInformation: string = "";
 
-  constructor(private sleepService: SleepService, private router: Router) { }
+  constructor(private sleepService: SleepService, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -39,7 +40,18 @@ export class SleepinessPage implements OnInit {
 
   saveSleepiness()
   {
-    // ToDo: have checks for invalid inputs.
+    if (this.sleepinessRating <= 0)
+    {
+      this.sendToast("Please choose a sleepiness rating!", 3000);
+      return;
+    }
+
+    if (this.activity === "")
+    {
+      this.sendToast("Please choose an activity!", 3000);
+      return;
+    }
+
     const sleepData = new StanfordSleepinessData(this.sleepinessRating, this.activity, this.additionalInformation);
 
     this.sleepService.logSleepinessData(sleepData);
@@ -51,5 +63,17 @@ export class SleepinessPage implements OnInit {
     this.additionalInformation = "";
 
     this.router.navigate(['/tabs/log-sleep'])
+  }
+
+  async sendToast(message: string, duration: number)
+  {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      position: "bottom",
+      color: "danger",
+    });
+
+    await toast.present();
   }
 }

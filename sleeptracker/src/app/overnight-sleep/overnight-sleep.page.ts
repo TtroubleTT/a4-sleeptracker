@@ -15,6 +15,7 @@ import {moon, sunny} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {SleepService} from "../services/sleep.service";
 import {OvernightSleepData} from "../data/overnight-sleep-data";
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-overnight-sleep',
@@ -29,7 +30,7 @@ export class OvernightSleepPage implements OnInit {
   public sleepEnd: string = new Date().toISOString();
   public sleepQuality: string = "";
 
-  constructor(private sleepService: SleepService, private router: Router) {
+  constructor(private sleepService: SleepService, private router: Router, private toastController: ToastController) {
     addIcons(
       {
         moon,
@@ -43,8 +44,28 @@ export class OvernightSleepPage implements OnInit {
 
   saveSleepLog()
   {
-    // ToDo: have checks for invalid inputs.
-    const sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd), this.sleepQuality);
+    const startDate = new Date(this.sleepStart);
+    const endDate = new Date(this.sleepEnd);
+
+    if (startDate.getTime() >= endDate.getTime())
+    {
+      this.sendToast("Bedtime must be before wake-up time.", 3000)
+      return;
+    }
+
+    if (endDate.getTime() - startDate.getTime() > 24 * 60 * 60 * 1000)
+    {
+      this.sendToast("If you slept more than 24 hours you should go to the doctors!", 5000)
+      return;
+    }
+
+    if (this.sleepQuality === "")
+    {
+      this.sendToast("You must declare how well you slept!", 3000)
+      return;
+    }
+
+    const sleepData = new OvernightSleepData(startDate, endDate, this.sleepQuality);
 
     this.sleepService.logOvernightData(sleepData);
     console.log("date string " + SleepService.AllOvernightData[0].dateString());
@@ -55,6 +76,18 @@ export class OvernightSleepPage implements OnInit {
     this.sleepQuality = "";
 
     this.router.navigate(['/tabs/log-sleep'])
+  }
+
+  async sendToast(message: string, duration: number)
+  {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      position: "bottom",
+      color: "danger",
+    });
+
+    await toast.present();
   }
 
 }
