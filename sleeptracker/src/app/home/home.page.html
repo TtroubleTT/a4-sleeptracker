@@ -1,20 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Sleep Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="sleep-card-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>LAST NIGHT'S SLEEP</ion-card-subtitle>
+        <ion-card-title>7 hours 45 minutes</ion-card-title>
+      </ion-card-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-icon name="moon"></ion-icon>
+              <p>Bedtime</p>
+              <strong>11:15 PM</strong>
+            </ion-col>
+
+            <ion-col>
+              <ion-icon name="sunny"></ion-icon>
+              <p>Wake-up</p>
+              <strong>7:00 AM</strong>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
