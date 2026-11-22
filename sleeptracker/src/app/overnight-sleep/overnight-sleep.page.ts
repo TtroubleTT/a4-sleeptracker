@@ -10,7 +10,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {moon, sunny} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {SleepService} from "../services/sleep.service";
@@ -29,7 +29,7 @@ export class OvernightSleepPage implements OnInit {
   public sleepEnd: string = new Date().toISOString();
   public sleepQuality: string = "";
 
-  constructor(private sleepService: SleepService) {
+  constructor(private sleepService: SleepService, private router: Router) {
     addIcons(
       {
         moon,
@@ -43,12 +43,18 @@ export class OvernightSleepPage implements OnInit {
 
   saveSleepLog()
   {
-    // ToDo: have checks for invalid inputs. Also clear page after leaving.
+    // ToDo: have checks for invalid inputs.
     const sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd), this.sleepQuality);
 
     this.sleepService.logOvernightData(sleepData);
     console.log("date string " + SleepService.AllOvernightData[0].dateString());
     console.log("summary string " + SleepService.AllOvernightData[0].summaryString());
+
+    this.sleepStart = new Date().toISOString();
+    this.sleepEnd = new Date().toISOString();
+    this.sleepQuality = "";
+
+    this.router.navigate(['/tabs/log-sleep'])
   }
 
 }

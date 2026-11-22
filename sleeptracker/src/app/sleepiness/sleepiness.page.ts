@@ -13,6 +13,7 @@ import {
 import {StanfordSleepinessData} from "../data/stanford-sleepiness-data";
 import {OvernightSleepData} from "../data/overnight-sleep-data";
 import {SleepService} from "../services/sleep.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sleepiness',
@@ -29,7 +30,7 @@ export class SleepinessPage implements OnInit {
 
   public additionalInformation: string = "";
 
-  constructor(private sleepService: SleepService) { }
+  constructor(private sleepService: SleepService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -38,11 +39,17 @@ export class SleepinessPage implements OnInit {
 
   saveSleepiness()
   {
-    // ToDo: have checks for invalid inputs. Also clear page after leaving.
+    // ToDo: have checks for invalid inputs.
     const sleepData = new StanfordSleepinessData(this.sleepinessRating, this.activity, this.additionalInformation);
 
     this.sleepService.logSleepinessData(sleepData);
     console.log("date string " + SleepService.AllSleepinessData[0].dateString());
     console.log("summary string " + SleepService.AllSleepinessData[0].summaryString());
+
+    this.sleepinessRating = 0;
+    this.activity = "";
+    this.additionalInformation = "";
+
+    this.router.navigate(['/tabs/log-sleep'])
   }
 }
