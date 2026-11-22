@@ -10,4 +10,58 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h1>Log Overnight Sleep</h1>
+  <h2>Record your bedtime and wake up time.</h2>
+
+  <h3>Bedtime</h3>
+  <ion-card class="card-container">
+    <ion-card-header>
+      <div class="card-layout">
+        <ion-icon name="moon"></ion-icon>
+        <div class="card-text">
+          <ion-card-title>Select when you went to bed</ion-card-title>
+          <ion-card-subtitle>Choose date and time</ion-card-subtitle>
+        </div>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-datetime-button datetime="bedtime-picker"></ion-datetime-button>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="bedtime-picker" presentation="date-time"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+  </ion-card>
+
+  <h3>Wake-up Time</h3>
+  <ion-card class="card-container">
+    <ion-card-header>
+      <div class="card-layout">
+        <ion-icon name="sunny"></ion-icon>
+        <div class="card-text">
+          <ion-card-title>Select when you woke up</ion-card-title>
+          <ion-card-subtitle>Choose date and time</ion-card-subtitle>
+        </div>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-datetime-button datetime="wake-picker"></ion-datetime-button>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="wake-picker" presentation="date-time"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="center-aligned">
+    <ion-button class="save-button">
+      Save Sleep Log
+    </ion-button>
+  </div>
 </ion-content>

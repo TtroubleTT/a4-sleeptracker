@@ -5,3 +5,62 @@ ion-title {
 ion-toolbar {
   --min-height: 80px;
 }
+
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 16px;
+  margin-bottom: 1px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-top: 1px;
+  margin-left: 16px;
+  margin-bottom: 40px;
+  font-weight: lighter;
+  color: #777;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-bottom: 1px;
+}
+
+.center-aligned {
+  display: flex;
+  justify-content: center;
+}
+
+.card-container {
+  margin-top: 5px;
+}
+
+.card-container ion-card-title {
+  font-size: 18px;
+}
+
+.card-layout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.card-layout ion-icon {
+  font-size: 32px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.save-button {
+  width: 90%;
+}
