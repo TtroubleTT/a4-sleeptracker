@@ -10,7 +10,7 @@
   <h1>Track Your Sleep</h1>
   <h2>Choose  what you'd like to record.</h2>
   <h3>LOG AN ENTRY</h3>
-  <ion-card>
+  <ion-card [button]="true" routerLink="/tabs/overnight-sleep">
     <ion-card-header>
       <div class="card-layout">
         <ion-icon name="moon"></ion-icon>
@@ -21,7 +21,7 @@
       </div>
     </ion-card-header>
   </ion-card>
-  <ion-card>
+  <ion-card [button]="true" routerLink="/tabs/sleepiness">
     <ion-card-header>
       <div class="card-layout">
         <ion-icon name="sunny"></ion-icon>

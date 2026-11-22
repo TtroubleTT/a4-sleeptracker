@@ -16,6 +16,18 @@ export const routes: Routes = [
         loadComponent: () => import('./log-sleep/log-sleep.page').then( m => m.LogSleepPage)
       },
       {
+        path: 'overnight-sleep',
+        loadComponent: () =>
+          import('./overnight-sleep/overnight-sleep.page')
+            .then(m => m.OvernightSleepPage)
+      },
+      {
+        path: 'sleepiness',
+        loadComponent: () =>
+          import('./sleepiness/sleepiness.page')
+            .then(m => m.SleepinessPage)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
@@ -27,4 +39,5 @@ export const routes: Routes = [
     redirectTo: 'tabs',
     pathMatch: 'full',
   },
+
 ];
