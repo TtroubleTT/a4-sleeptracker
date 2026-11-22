@@ -11,7 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { addIcons} from "ionicons";
-import {moon, sunny} from "ionicons/icons";
+import {bed} from "ionicons/icons";
 
 @Component({
   selector: 'app-log-sleep',
@@ -25,8 +25,7 @@ export class LogSleepPage implements OnInit {
   constructor() {
     addIcons(
       {
-        moon,
-        sunny,
+        bed,
       }
     );
   }
