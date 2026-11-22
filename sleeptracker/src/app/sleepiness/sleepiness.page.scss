@@ -5,3 +5,50 @@ ion-title {
 ion-toolbar {
   --min-height: 80px;
 }
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 16px;
+  margin-bottom: 1px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-top: 1px;
+  margin-left: 16px;
+  margin-bottom: 40px;
+  font-weight: lighter;
+  color: #777;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-bottom: 1px;
+}
+
+.center-aligned {
+  display: flex;
+  justify-content: center;
+}
+
+.save-button {
+  width: 90%;
+}
+
+.selector-container {
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.selector-container ion-select {
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 10px;
+  padding: 12px;
+}

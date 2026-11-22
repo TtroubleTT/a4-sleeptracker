@@ -10,4 +10,24 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h1>Log Sleepiness</h1>
+  <h2>How sleepy are you feeling right now?</h2>
+  <h3>Rate Sleepiness</h3>
+
+  <div class="selector-container">
+    <ion-select [(ngModel)]="sleepinessRating" placeholder="Choose your sleepiness level" interface="alert" label="Sleepiness Rating" label-placement="stacked">
+      @for (description of StanfordSleepinessData.ScaleValues.slice(1); track $index)
+      {
+        <ion-select-option [value]="$index + 1">
+          {{$index + 1}} - {{description}}
+        </ion-select-option>
+      }
+    </ion-select>
+  </div>
+
+  <div class="center-aligned">
+    <ion-button class="save-button">
+      Save Sleepiness Log
+    </ion-button>
+  </div>
 </ion-content>
