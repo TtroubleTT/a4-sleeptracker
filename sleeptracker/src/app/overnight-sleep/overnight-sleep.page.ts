@@ -43,7 +43,7 @@ export class OvernightSleepPage implements OnInit {
 
   saveSleepLog()
   {
-    // ToDo: have checks for invalid inputs.
+    // ToDo: have checks for invalid inputs. Also clear page after leaving.
     const sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd), this.sleepQuality);
 
     this.sleepService.logOvernightData(sleepData);

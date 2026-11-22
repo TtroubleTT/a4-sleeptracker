@@ -29,7 +29,7 @@ export class SleepService {
 		var sleepinessDate = new Date();
 		sleepinessDate.setDate(sleepinessDate.getDate() - 1); //set to yesterday
 		sleepinessDate.setHours(14, 38, 0); //2:38pm
-		this.logSleepinessData(new StanfordSleepinessData(4, sleepinessDate)); // add sleepiness at 2pm
+		this.logSleepinessData(new StanfordSleepinessData(4, "Studying", "Im cool",sleepinessDate)); // add sleepiness at 2pm
 		goToBed = new Date();
 		goToBed.setDate(goToBed.getDate() - 1); //set to yesterday
 		goToBed.setHours(23, 11, 0); //11:11pm
