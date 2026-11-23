@@ -42,7 +42,7 @@ export class OvernightSleepPage implements OnInit {
   ngOnInit() {
   }
 
-  saveSleepLog()
+  public async saveSleepLog()
   {
     const startDate = new Date(this.sleepStart);
     const endDate = new Date(this.sleepEnd);
@@ -67,7 +67,7 @@ export class OvernightSleepPage implements OnInit {
 
     const sleepData = new OvernightSleepData(startDate, endDate, this.sleepQuality);
 
-    this.sleepService.logOvernightData(sleepData);
+    await this.sleepService.logOvernightData(sleepData);
     console.log("date string " + SleepService.AllOvernightData[0].dateString());
     console.log("summary string " + SleepService.AllOvernightData[0].summaryString());
 
@@ -78,7 +78,7 @@ export class OvernightSleepPage implements OnInit {
     this.router.navigate(['/tabs/log-sleep'])
   }
 
-  async sendToast(message: string, duration: number)
+  public async sendToast(message: string, duration: number)
   {
     const toast = await this.toastController.create({
       message: message,

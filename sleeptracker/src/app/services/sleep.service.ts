@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
+import { Preferences } from "@capacitor/preferences";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ export class SleepService {
 	public static AllSleepData:SleepData[] = [];
 	public static AllOvernightData:OvernightSleepData[] = [];
 	public static AllSleepinessData:StanfordSleepinessData[] = [];
+
+  private overnightData:string = "overnightData";
+  private sleepinessData:string = "sleepinessData";
 
 	constructor() {
 		if(SleepService.LoadDefaultData) {
@@ -38,13 +42,73 @@ export class SleepService {
 		this.logOvernightData(new OvernightSleepData(goToBed, wakeUp, "1"));
 	}
 
-	public logOvernightData(sleepData:OvernightSleepData) {
+	public async logOvernightData(sleepData:OvernightSleepData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllOvernightData.push(sleepData);
+
+    await this.saveData();
 	}
 
-	public logSleepinessData(sleepData:StanfordSleepinessData) {
+	public async logSleepinessData(sleepData:StanfordSleepinessData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllSleepinessData.push(sleepData);
+
+    await this.saveData();
 	}
+
+  public async saveData()
+  {
+    await Preferences.set({
+      key: this.overnightData,
+      value: JSON.stringify(SleepService.AllOvernightData),
+    });
+
+    await Preferences.set({
+      key: this.sleepinessData,
+      value: JSON.stringify(SleepService.AllSleepinessData),
+    });
+  }
+
+  public async loadData() {
+    const overnightResult = await Preferences.get({
+      key: this.overnightData,
+    });
+
+    const sleepinessResult = await Preferences.get({
+      key: this.sleepinessData,
+    });
+
+    if (overnightResult.value) {
+      const data = JSON.parse(overnightResult.value);
+
+      SleepService.AllOvernightData = data.map((item: any) => {
+        const sleep = new OvernightSleepData(
+          new Date(item.sleepStart),
+          new Date(item.sleepEnd),
+          item.sleepQuality
+        );
+
+        sleep.loggedAt = new Date(item.loggedAt);
+        return sleep;
+      });
+    }
+
+    if (sleepinessResult.value) {
+      const data = JSON.parse(sleepinessResult.value);
+
+      SleepService.AllSleepinessData = data.map((item: any) => {
+        return new StanfordSleepinessData(
+          item.loggedValue,
+          item.activity,
+          item.additionalInformation,
+          new Date(item.loggedAt)
+        );
+      });
+    }
+
+    SleepService.AllSleepData = [
+      ...SleepService.AllOvernightData,
+      ...SleepService.AllSleepinessData
+    ].sort((a, b) => a.loggedAt.getTime() - b.loggedAt.getTime());
+  }
 }

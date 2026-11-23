@@ -38,7 +38,7 @@ export class SleepinessPage implements OnInit {
 
   protected readonly StanfordSleepinessData = StanfordSleepinessData;
 
-  saveSleepiness()
+  public async saveSleepiness()
   {
     if (this.sleepinessRating <= 0)
     {
@@ -54,7 +54,7 @@ export class SleepinessPage implements OnInit {
 
     const sleepData = new StanfordSleepinessData(this.sleepinessRating, this.activity, this.additionalInformation);
 
-    this.sleepService.logSleepinessData(sleepData);
+    await this.sleepService.logSleepinessData(sleepData);
     console.log("date string " + SleepService.AllSleepinessData[0].dateString());
     console.log("summary string " + SleepService.AllSleepinessData[0].summaryString());
 
