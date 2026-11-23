@@ -69,3 +69,36 @@ h3 {
   padding: 16px 16px;
   margin-bottom: 30px;
 }
+
+.grey {
+  color: #A6A6A6;
+}
+
+.white {
+  color: #FFFFFF;
+}
+
+ion-datetime {
+  --background: #222536;
+  --title-color: #f1f1f5;
+  --wheel-highlight-background: #353b50;
+  --wheel-highlight-border-radius: 8px;
+  --wheel-fade-background-rgb: 34, 37, 54;
+
+  --calendar-day-color: #f1f1f5;
+  --calendar-day-color-disabled: #666666;
+  --calendar-month-year-color: #bfc2d0;
+  --calendar-weekday-color: #a6a6a6;
+  --calendar-day-background-color-selected: #a78bfa;
+  --calendar-day-color-selected: #ffffff;
+}
+
+ion-segment {
+  --background: #222536;
+}
+
+ion-segment-button {
+  --color: #BFC2D0;
+  --color-checked: #171923;
+  --indicator-color: #A78BFA;
+}

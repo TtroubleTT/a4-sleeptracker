@@ -35,3 +35,48 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-card {
+  border: 1px solid #3a4055;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+ion-card-title {
+  color: #f1f1f5;
+}
+
+ion-card-subtitle {
+  color: #a6a9b8;
+}
+
+ion-button {
+  --border-radius: 12px;
+  font-weight: 600;
+}
+
+ion-datetime-button {
+  --background: #353b50;
+  --color: #f1f1f5;
+}
+
+ion-datetime-button::part(native) {
+  background: #A78BFA;
+  color: #171923;
+  border-radius: 8px;
+}
+
+ion-alert.sleepiness-alert {
+  --background: #222536;
+  --color: #F1F1F5;
+  --button-color: #A78BFA;
+  --backdrop-opacity: 0.7;
+}
+
+ion-alert.sleepiness-alert::part(radio-label) {
+  color: #F1F1F5;
+}
+
+ion-alert.sleepiness-alert::part(radio-icon) {
+  color: #A78BFA;
+}

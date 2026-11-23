@@ -49,13 +49,21 @@ h3 {
 }
 
 .selector-container ion-select {
-  border: 1px solid var(--ion-color-medium);
+  border: 2px solid var(--ion-color-medium);
   border-radius: 10px;
   padding: 12px;
 }
 
 ion-textarea {
-  border: 1px solid var(--ion-color-medium);
+  border: 2px solid var(--ion-color-medium);
   border-radius: 10px;
   padding: 8px 12px;
+}
+
+.grey {
+  color: #A6A6A6;
+}
+
+.white {
+  color: #FFFFFF;
 }

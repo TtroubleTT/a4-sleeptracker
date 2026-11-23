@@ -59,6 +59,19 @@ img {
   width: 40px;
   height: 40px;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.75;
+  filter: brightness(0) invert(1);
+}
+
+.grey {
+  color: #A6A6A6;
+}
+
+.white {
+  color: #FFFFFF;
+}
+
+ion-card {
+  border: 2px solid #A78BFA;
+  border-radius: 14px;
+  box-shadow: none;
 }

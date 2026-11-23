@@ -11,11 +11,11 @@
 
 <ion-content [fullscreen]="true">
   <h1>Log Sleepiness</h1>
-  <h2>How sleepy are you feeling right now?</h2>
+  <h2 class="grey">How sleepy are you feeling right now?</h2>
   <h3>Sleepiness Information</h3>
 
   <div class="selector-container">
-    <ion-select [(ngModel)]="sleepinessRating" placeholder="Choose your sleepiness level" interface="alert" label="Sleepiness Rating" label-placement="stacked">
+    <ion-select [(ngModel)]="sleepinessRating" placeholder="Choose your sleepiness level" interface="alert" [interfaceOptions]="{ cssClass: 'sleepiness-alert' }" label="Sleepiness Rating" label-placement="stacked">
       @for (description of StanfordSleepinessData.ScaleValues.slice(1); track $index)
       {
         <ion-select-option [value]="$index + 1">
@@ -26,7 +26,7 @@
   </div>
 
   <div class="selector-container">
-    <ion-select [(ngModel)]="activity" placeholder="Choose your activity" interface="alert" label="What were you doing?" label-placement="stacked">
+    <ion-select [(ngModel)]="activity" placeholder="Choose your activity" interface="alert" [interfaceOptions]="{ cssClass: 'sleepiness-alert' }" label="What were you doing?" label-placement="stacked">
       <ion-select-option value="Working">Working</ion-select-option>
       <ion-select-option value="Studying">Studying</ion-select-option>
       <ion-select-option value="Studying">In Class</ion-select-option>
