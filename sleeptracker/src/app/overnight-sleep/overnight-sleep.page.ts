@@ -26,8 +26,8 @@ import {ToastController} from "@ionic/angular";
 })
 export class OvernightSleepPage implements OnInit {
 
-  public sleepStart: string = new Date().toISOString();
-  public sleepEnd: string = new Date().toISOString();
+  public sleepStart: string = this.getLocalDateTime();
+  public sleepEnd: string = this.getLocalDateTime();
   public sleepQuality: string = "";
 
   constructor(private sleepService: SleepService, private router: Router, private toastController: ToastController) {
@@ -71,8 +71,8 @@ export class OvernightSleepPage implements OnInit {
     console.log("date string " + SleepService.AllOvernightData[0].dateString());
     console.log("summary string " + SleepService.AllOvernightData[0].summaryString());
 
-    this.sleepStart = new Date().toISOString();
-    this.sleepEnd = new Date().toISOString();
+    this.sleepStart = this.getLocalDateTime();
+    this.sleepEnd = this.getLocalDateTime();
     this.sleepQuality = "";
 
     this.router.navigate(['/tabs/log-sleep'])
@@ -88,6 +88,14 @@ export class OvernightSleepPage implements OnInit {
     });
 
     await toast.present();
+  }
+
+  private getLocalDateTime(): string {
+    const now = new Date();
+
+    const offset = now.getTimezoneOffset() * 60000;
+
+    return new Date(now.getTime() - offset).toISOString().slice(0, 19);
   }
 
 }

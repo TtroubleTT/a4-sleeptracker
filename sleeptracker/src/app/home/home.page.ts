@@ -31,4 +31,15 @@ export class HomePage {
 	get allSleepData() {
 		return SleepService.AllSleepData;
 	}
+
+  get latestOvernightSleep(): OvernightSleepData | undefined
+  {
+    const data = SleepService.AllOvernightData;
+    if (data.length === 0)
+    {
+      return undefined;
+    }
+
+    return data[data.length - 1];
+  }
 }

@@ -7,30 +7,48 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="sleep-card-container">
-    <ion-card>
+  @if (latestOvernightSleep; as sleep)
+  {
+    <div class="sleep-card-container">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>LAST NIGHT'S SLEEP</ion-card-subtitle>
+          <ion-card-title>{{sleep.summaryString()}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="moon"></ion-icon>
+                <p>Bedtime</p>
+                <strong>{{sleep.startTimeString()}}</strong>
+              </ion-col>
+
+              <ion-col>
+                <ion-icon name="sunny"></ion-icon>
+                <p>Wake-up</p>
+                <strong>{{sleep.endTimeString()}}</strong>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  } @else
+  {
+    <div class="sleep-card-container">
+      <ion-card>
       <ion-card-header>
         <ion-card-subtitle>LAST NIGHT'S SLEEP</ion-card-subtitle>
-        <ion-card-title>7 hours 45 minutes</ion-card-title>
+        <ion-card-title>No Sleep Data</ion-card-title>
+
+        <ion-card-content>
+          <p>You haven't logged any overnight sleep.</p>
+          <p>Log your sleep to see your most recent data here!</p>
+        </ion-card-content>
       </ion-card-header>
-
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-icon name="moon"></ion-icon>
-              <p>Bedtime</p>
-              <strong>11:15 PM</strong>
-            </ion-col>
-
-            <ion-col>
-              <ion-icon name="sunny"></ion-icon>
-              <p>Wake-up</p>
-              <strong>7:00 AM</strong>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-  </div>
+      </ion-card>
+    </div>
+  }
 </ion-content>
