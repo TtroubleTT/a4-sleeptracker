@@ -20,3 +20,51 @@ ion-title {
 ion-toolbar {
   --min-height: 80px;
 }
+
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 16px;
+  margin-bottom: 1px;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.no-data {
+  margin-left: 16px;
+}
+
+.respects-newline {
+  white-space: pre-line;
+}
+
+.extra-information {
+  font-size: 12px;
+  font-weight: normal;
+  color: #666666;
+}
+
+.logged-date {
+  font-size: 10px;
+}
+
+ion-item {
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 10px;
+  margin: 10px 16px;
+  --border-style: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--ion-color-medium);
+  margin: 5px 0;
+}

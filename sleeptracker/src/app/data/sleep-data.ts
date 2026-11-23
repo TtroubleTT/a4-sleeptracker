@@ -15,6 +15,14 @@ export class SleepData {
 	}
 
 	dateString():string {
-		return this.loggedAt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+		return this.loggedAt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', hour: "numeric", minute: "numeric" });
 	}
+
+  nameString():string {
+    return "Unknown";
+  }
+
+  additionalProperties():string {
+    return "Unknown";
+  }
 }
